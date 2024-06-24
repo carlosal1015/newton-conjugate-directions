@@ -1,0 +1,309 @@
+\input{questions/p5theory}
+
+\section{Pregunta N$^{\circ}$5\qquad <estudiante 1>}
+
+\begin{frame}
+
+    \begin{enumerate}\setcounter{enumi}{4}
+        \item
+
+              Sea $\left\{a_{n}\right\}$ la sucesión definida por
+
+              \begin{equation*}
+                  a_{1}=\sqrt{3},\quad
+                  a_{n}=\sqrt{3a_{n-1}}.
+              \end{equation*}
+
+              Determine $\lim\limits_{n\to\infty}a_{n}$.
+    \end{enumerate}
+
+    \begin{solution}
+        Primero probaremos que la \alert{existencia del límite} y
+        luego lo calcularemos.
+        Según el teorema de convergencia monótona, si la sucesión
+        $a_{n}$ es monótona y acotada, entonces converge a un valor
+        (el límite que se pide determinar).
+
+        \begin{description}
+            \item[$a_{n}$ es monótona creciente.]
+
+                Definimos la proposición
+                \begin{math}
+                    p\left(n\right)\coloneqq
+                    a_{n+1}\geq a_{n}
+                \end{math}.
+
+                Por el \alert{Principio de Inducción Matemática},
+                vemos que el caso base $p\left(1\right)$ se cumple
+                \begin{equation*}
+                    a_{2}=
+                    \sqrt{3\sqrt3}>
+                    \sqrt{3}=a_{1}.
+                \end{equation*}
+
+                Para la hipótesis inductiva, asumamos que
+                $p\left(k\right)$ se cumple hasta un $k\in\mathbb{N}$
+                fijo.
+                \begin{align*}
+                    a_{k+1}         & \geq a_{k}        \\
+                    3a_{k+1}        & \geq 3a_{k}       \\
+                    \sqrt{3a_{k+1}} & \geq\sqrt{3a_{k}} \\
+                    a_{k+2}         & \geq a_{k+1}.
+                \end{align*}
+
+                Luego, $p\left(k+1\right)$ se cumple.
+                Por lo tanto, $p\left(n\right)$ se cumple para todo
+                $n$ natural y la sucesión $a_{n}$ es monótona
+                creciente.
+        \end{description}
+    \end{solution}
+\end{frame}
+
+
+\begin{frame}
+    \begin{solution}
+        \begin{description}
+            \item[$a_{n}$ es acotada superiormente.]
+
+                Sea la proposición
+                \begin{math}
+                    q\left(n\right)\coloneqq
+                    \text{existe un natural $M$ tal que $a_n\leq M$}
+                \end{math}.
+
+                Por el \alert{Principio de Inducción Matemática}, si
+                $M=3$ vemos que el caso base $q\left(1\right)$ se
+                cumple
+                \begin{equation*}
+                    a_{1}=
+                    \sqrt{3}\leq 3.
+                \end{equation*}
+
+                Para la hipótesis inductivo, asumamos que
+                $q\left(k\right)$ se cumple hasta un
+                $k\in\mathbb{N}$ fijo.
+
+                \begin{align*}
+                    a_{k+1}       & \leq a_{k}   \\
+                    a_{k}         & \leq 3       \\
+                    3a_{k}        & \leq 9       \\
+                    \sqrt{3a_{k}} & \leq\sqrt{9} \\
+                    a_{k+1}       & \leq 3.
+                \end{align*}
+
+                Luego, $q\left(k+1\right)$ se cumple.
+                Por lo tanto, $q\left(n\right)$ se cumple para todo
+                $n$ natural y la sucesión $a_{n}$ es acotada
+                superiormente.
+
+            \item[Cálculo del límite.]
+
+                \begin{equation*}
+                    L=
+                    \lim\limits_{n\to\infty}a_{n}=
+                    \lim\limits_{n\to\infty}\sqrt{3a_{n-1}}=
+                    \sqrt{3\lim\limits_{n\to\infty}a_{n-1}}=
+                    \sqrt{3L}
+                    \implies
+                    L\left(L-3\right)=0
+                    \implies
+                    L=0 \;\vee\; L=3.
+                \end{equation*}
+                Sabemos que $a_{n}$ es una sucesión monótona
+                creciente, así que $a_{n}\leq a_{1}=\sqrt{3}$ para
+                todo $n\geq1$
+                Luego, $L\geq\sqrt{3}>0$, por lo que $L=3$.
+        \end{description}
+    \end{solution}
+\end{frame}
+
+\begin{frame}
+    \begin{solution}
+        Otra forma.
+
+        \begin{description}[leftmargin=*] %\leavevmode
+            \item[$a_{n}$ es estrictamente creciente.]
+
+                Definimos la proposición $p\left(n\right)$:
+
+                Definimos la función
+                \begin{align*}
+                    f\colon\mathbb{R}^{+} &
+                    \longrightarrow\mathbb{R} \\
+                    t                     &
+                    \longmapsto\sqrt{3t}
+                \end{align*}
+                Además,
+                \begin{math}
+                    t>0\implies
+                    3t>0\implies
+                    f\left(t\right)=
+                    \sqrt{3t}>0\implies
+                    \dfrac{1}{f\left(t\right)}>0\implies
+                    f^{\prime}\left(t\right)=
+                    \dfrac{3}{2f\left(t\right)}>0.
+                \end{math}
+                Por lo tanto, $f$ es estrictamente creciente en
+                $\mathbb{R}^{+}$.
+                Y como
+                \begin{math}
+                    \left\{a_{n}\right\}\subset
+                    f\left(\mathbb{R}^{+}\right)
+                \end{math}.
+                Concluimos que $\left\{a_{n}\right\}$ es
+                estrictamente creciente.
+
+            \item[$a_{n}$ es acotada superiormente.]
+
+                Supongamos que $p\left(n\right)$ es la proposición
+                $\exists 3>0$ tal que $a_{n}\leq 3$.
+                Por el \alert{Principio de Inducción Matemática},
+
+                \begin{enumerate}[(1)]
+                    \item\label{hyp:5.1}
+
+                    $p\left(1\right)$ es verdadero, es decir,
+                    $\exists 3>0$ tal que $a_{1}=\sqrt{3}\leq 3$.
+
+                    \item\label{hyp:5.2}
+
+                    $\forall k\in\mathbb{N}$, $p\left(k\right)$ es
+                    verdadero, es decir, $\exists 3>0$ tal que
+                    $a_{k}=\sqrt{3a_{k-1}}\leq 3$.
+                \end{enumerate}
+
+                Veamos que $p\left(k+1\right)$ es verdadero.
+                En efecto, por la hipótesis de
+                inducción~\eqref{hyp:5.2}, $p\left(k\right)$ es
+                verdadero, es decir, $\exists 3>0$ tal que
+                \begin{math}
+                    a_{k}\leq 3\implies
+                    3a_{k}\leq 3\times 3\implies
+                    \sqrt{3a_{k}}\leq\sqrt{9}\implies
+                    a_{k+1}\leq3
+                \end{math}.
+                En otras palabras, $p\left(k+1\right)$ es verdadero.
+                Por lo tanto, $\forall n\in\mathbb{N}$, $\exists 3>0$
+                tal que $a_{n}\leq 3$.
+        \end{description}
+    \end{solution}
+\end{frame}
+
+\begin{frame}
+    Como $\left\{a_{n}\right\}$ es monótona creciente y acotada
+    superiormente, entonces el
+    \begin{math}
+        \lim\limits_{n\to\infty}
+        \left\{a_{n}\right\}_{n\in\mathbb{N}}=
+        L=
+        \sup\left\{a_{n}:n\in\mathbb{N}\right\}
+    \end{math}.
+
+    O sea, $\exists L\in\mathbb{R}$ tal que
+    \begin{align*}
+        \lim\limits_{n\to\infty}a_{n}
+         & =
+        L.                 \qquad\text{Ya que la sucesión $a_{n}$ es convergente.}
+         &   \\
+        \lim\limits_{n\to\infty}\sqrt{3a_{n-1}}
+         & =
+        L.                 \qquad\text{Definición de $a_{n}$.}
+         &   \\
+        \sqrt{\lim\limits_{n\to\infty}3a_{n-1}}
+         & =
+        L.                 \qquad\text{La raíz cuadrada es una función continua.}
+         &   \\
+        \sqrt{3\lim\limits_{n\to\infty}a_{n-1}}
+         & =
+        L.
+         &   \\
+        \sqrt{3L}
+         & =
+        L.              \qquad\text{Ya que la sucesión $a_{n}$ es convergente.}
+         &   \\
+        3L
+         & =
+        L^{2}.
+         &   \\
+        0
+         & =
+        L\left(L-3\right). \qquad\text{$L\neq0$ porque $a_{n}$ es estrictamente creciente.}
+         &   \\
+        3
+         & =
+        L.
+    \end{align*}
+\end{frame}
+
+\begin{frame}[fragile]
+    La gráfica obtenida con Python.
+
+    \begin{minipage}{0.5\textwidth}
+        \begin{figure}[ht!]
+            \centering
+            \includegraphics[width=7.5cm]{questions/p5}
+        \end{figure}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+        \begin{listing}[H]
+            \inputminted[
+                fontsize=\scriptsize,
+                breaklines,
+            ]{python}{questions/p5.py}
+        \end{listing}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{solution}
+        \begin{columns}
+            \begin{column}{0.48\textwidth}
+                \inputminted[fontsize=\tiny,firstline=3,lastline=6]{python}{questions/p5.py}
+
+                \
+
+                \inputminted[fontsize=\tiny,firstline=8,lastline=12]{python}{questions/p5.py}
+
+            \end{column}
+            \begin{column}{0.48\textwidth}
+                \inputminted[fontsize=\tiny,firstline=14,lastline=18]{python}{questions/p5.py}
+            \end{column}
+        \end{columns}
+    \end{solution}
+\end{frame}
+
+\begin{frame}
+    \begin{solution}
+        \begin{algorithm}[H]
+            $A\leftarrow 1.0$\;
+            $B\leftarrow 1.0$\;
+            $p\leftarrow 0$\;
+            \Mientras{\normalfont $\left(\left(A+1\right)-A\right)-1=0$}{
+                $A\leftarrow 2\ast A$\;
+                $p\leftarrow p+1$\;
+                \Mientras{\normalfont $\left(\left(A+B\right)-A\right)-B\neq0$}{
+                    $B\leftarrow B+1$\;
+                }
+            }
+        \end{algorithm}
+    \end{solution}
+\end{frame}
+
+\begin{frame}
+    \begin{solution}
+        Sea la longitud de palabra de $N=4$ bits, genere una tabla que muestre la representación decimal de los números $+7,+6,+5,+4,+3,+2,+1,+0,-0,-1,-2,-3,-4,-5,-6,-7$ y $-8$ en la representación de su signo-magnitud y complemento a dos.
+        Es decir,
+
+        \
+
+        \begin{table}[ht!]
+            \centering
+            \begin{tabular}{|x{2.5cm}|x{2.5cm}|x{3.1cm}|}
+                \hline
+                Representación decimal & Representación signo-magnitud & Representación complemento a dos \\
+                \hline$+7$             & $0111$                        & $0111$                           \\
+                \hline
+            \end{tabular}
+        \end{table}
+    \end{solution}
+\end{frame}

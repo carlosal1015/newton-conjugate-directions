@@ -1,0 +1,107 @@
+% Tomado de https://github.com/Numerical-Analysis-2024/beamertheme-numeric/blob/main/main.tex
+
+% aspectratio: 1920x1080 == 169, 1920x1200 == 1610
+% c: el contenido de cada frame está centrado
+% spanish: traduce teoremas, ejemplos, demostración. (requiere de babel)
+% 8pt: tamaño de letra
+% professionalfonts:
+\documentclass[
+	aspectratio=1610,
+	c,
+	spanish,
+	8pt, % Tamaño de letra
+	professionalfonts,
+	xcolor={svgnames,table},
+	usepdftitle=false,
+	hyperref={
+			pdfencoding=auto,
+			linktocpage=true,
+			colorlinks=true,
+			linkcolor=DarkBlue,
+			urlcolor=magenta,
+			pdfpagelabels,
+			pdftex,
+			pdfauthor={Repaso de Análisis Numérico I 2024},
+			pdftitle={Práctica dirigida},
+			pdfsubject={Análisis y Modelamiento Numérico I},
+			pdfkeywords={interpolation, quadratures, truncation error},
+			pdfproducer={LuaHBTeX, Version 1.18.0 (TeX Live 2024/Arch Linux)},
+			% bookmark=false
+		}
+]{beamer}
+
+\usepackage[spanish,es-sloppy]{babel}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{minted}
+\usepackage{fontspec}
+\usepackage{array}
+\usepackage[linesnumbered,ruled,boxed,vlined,spanish]{algorithm2e}
+\usepackage{algorithmicx}
+\usepackage[
+	citestyle=numeric,
+	backend=biber,
+	defernumbers=true,
+	maxcitenames=4
+]{biblatex}
+\addbibresource{references.bib}
+
+\setmonofont{JetBrains Mono} % Fira Mono, Intel One Mono, IBM Plex Mono https://hackingcpp.com/dev/coding_fonts.html
+% Habilita el tipo de letra matemático con serifas
+\usefonttheme[onlymath]{serif}
+% Quita los símbolos de navegación
+\setbeamertemplate{navigation symbols}{}
+% Centrado las secciones
+\setbeamertemplate{frametitle}[default][center]
+% Permite que los teoremas estén en un bloque
+\setbeamertemplate{theorems}[ams style]
+
+\makeatletter
+\newenvironment<>{proofs}[1][\proofname]{%
+	\par
+	\def\insertproofname{#1\@addpunct{.}}%
+	\usebeamertemplate{proof begin}#2}
+{\usebeamertemplate{proof end}}
+\makeatother
+
+% https://tex.stackexchange.com/questions/438612/space-between-exists-and-forall
+\let\oldforall\forall
+\renewcommand{\forall}{\oldforall \, }
+
+\let\oldexist\exists
+\renewcommand{\exists}{\oldexist \: }
+
+\newcommand\existu{\oldexist! \: }
+
+% https://tex.stackexchange.com/questions/68080/beamer-bibliography-icon
+\setbeamertemplate{bibliography item}{%
+	\ifboolexpr{ test {\ifentrytype{book}} or test {\ifentrytype{mvbook}}
+		or test {\ifentrytype{collection}} or test {\ifentrytype{mvcollection}}
+		or test {\ifentrytype{reference}} or test {\ifentrytype{mvreference}} }
+	{\setbeamertemplate{bibliography item}[book]}
+	{\ifentrytype{online}
+		{\setbeamertemplate{bibliography item}[online]}
+		{\setbeamertemplate{bibliography item}[article]}}%
+	\usebeamertemplate{bibliography item}}
+
+\defbibenvironment{bibliography}
+{\list{}
+	{\settowidth{\labelwidth}{\usebeamertemplate{bibliography item}}%
+		\setlength{\leftmargin}{\labelwidth}%
+		\setlength{\labelsep}{\biblabelsep}%
+		\addtolength{\leftmargin}{\labelsep}%
+		\setlength{\itemsep}{\bibitemsep}%
+		\setlength{\parsep}{\bibparsep}}}
+{\endlist}
+{\item}
+
+% https://tex.stackexchange.com/questions/706675/no-numbering-solution-environment-when-ams-style-is-enabled-beamer
+\setbeamerfont{block title}{series=\bfseries}
+\renewenvironment<>{solution}{\begin{block}#1{\translate{Solution}}\itshape}{\end{block}}
+
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+
+\directlua {
+	pdf.setmajorversion(2)
+	pdf.setminorversion(0)
+}

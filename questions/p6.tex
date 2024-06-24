@@ -1,0 +1,49 @@
+\section{Pregunta N$^{\circ}$6\qquad <estudiante 2>}
+
+\begin{frame}[fragile]
+
+	\begin{enumerate}\setcounter{enumi}{5}
+		\item
+
+		      Programe la factorización $LU$ de Doolittle
+		      \mintinline{cpp}{L, U = doolittle(A)} y aplíquelo
+		      con
+		      \begin{math}
+			      \begin{bmatrix}
+				      2 & 1 & 1 & 0 \\
+				      4 & 3 & 3 & 1 \\
+				      8 & 7 & 9 & 5 \\
+				      6 & 7 & 9 & 8
+			      \end{bmatrix}
+		      \end{math}.
+	\end{enumerate}
+
+	\begin{solution}
+		\begin{columns}
+			\begin{column}{0.48\textwidth}
+				\inputminted[fontsize=\tiny,firstline=1,lastline=24]{cpp}{questions/lu.cc}
+			\end{column}
+			\begin{column}{0.48\textwidth}
+				\inputminted[fontsize=\tiny,firstline=1,lastline=23]{text}{questions/lu.txt}
+			\end{column}
+		\end{columns}
+	\end{solution}
+\end{frame}
+
+\begin{frame}[t,fragile]
+	\begin{solution}
+		\begin{columns}
+			\begin{column}{0.48\textwidth}
+				\inputminted[fontsize=\tiny,firstline=1,lastline=35]{cpp}{questions/src/doolittle.cc}
+			\end{column}
+			\begin{column}{0.48\textwidth}
+				\inputminted[fontsize=\tiny,firstline=1,lastline=17]{cpp}{questions/src/product.cc}
+
+				\
+
+				\inputminted[fontsize=\tiny,firstline=1,lastline=16]{cpp}{questions/src/print.cc}
+			\end{column}
+		\end{columns}
+	\end{solution}
+\end{frame}
+

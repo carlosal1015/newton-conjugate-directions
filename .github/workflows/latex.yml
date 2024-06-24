@@ -1,0 +1,51 @@
+name: LaTeX CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Partial Clone
+        shell: bash
+        run: |
+          REPO="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+          git config --global user.email github-actions@github.com
+          git config --global user.name github-actions
+          git clone -q --filter=blob:none --no-checkout --depth=1  --sparse $REPO .
+          git sparse-checkout init --cone
+          git sparse-checkout set questions
+          git checkout
+
+      - uses: addnab/docker-run-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: ghcr.io
+          image: ghcr.io/cpp-review-dune/introductory-review/texlive:latest
+          options: -v ${{github.workspace}}:/work
+          shell: bash
+          run: |
+            sudo chown -R gitpod:gitpod /work
+            cd /work && arara main && mkdir -p pdf && mv main.pdf pdf
+
+      - name: Check pdf files
+        run: |
+          find pdf -type f -name "main.pdf" -exec file -- {} + | grep -q ' PDF '
+
+      - name: "Tar files"
+        run: |
+          sudo chown runner:docker -R .
+          tar --zstd -cf PDF.tar.zst pdf/main.pdf
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PDF-artifact
+          path: PDF.tar.zst
+          if-no-files-found: error
+          retention-days: 90

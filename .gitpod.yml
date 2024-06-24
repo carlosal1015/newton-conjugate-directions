@@ -1,0 +1,6 @@
+image: ghcr.io/cpp-review-dune/introductory-review/texlive
+
+vscode:
+  extensions:
+    - anwar.papyrus-pdf
+    - James-Yu.latex-workshop

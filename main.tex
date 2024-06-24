@@ -1,0 +1,93 @@
+%! Integrantes:
+%! <estudiante 1> (Ciencia de la Computación)
+%! <estudiante 2> (Ciencia de la Computación)
+%! <estudiante 3> (Matemática)
+%! <estudiante 4> (Ciencia de la Computación)
+%! <estudiante 5> (Ciencia de la Computación)
+%! <estudiante 6> (Ciencia de la Computación)
+%! Universidad Nacional de Ingeniería
+%! Facultad de Ciencias
+%! Lima, Perú
+% arara: clean: {
+% arara: --> extensions:
+% arara: --> ['aux','bbl','bcf','blg','log','nav','out',
+% arara: --> 'pdf','run.xml','snm','synctex.gz','toc','vrb']
+% arara: --> }
+% arara: lualatex: {
+% arara: --> shell: yes,
+% arara: --> draft: yes,
+% arara: --> interaction: batchmode
+% arara: --> }
+% arara: biber
+% arara: lualatex: {
+% arara: --> shell: yes,
+% arara: --> draft: yes,
+% arara: --> interaction: batchmode
+% arara: --> }
+% arara: lualatex: {
+% arara: --> shell: yes,
+% arara: --> synctex: yes,
+% arara: --> interaction: batchmode
+% arara: --> }
+% arara: clean: {
+% arara: --> extensions:
+% arara: --> ['aux','bbl','bcf','blg','log','nav','out',
+% arara: --> 'run.xml','snm','synctex.gz','toc','vrb']
+% arara: --> }
+
+\input{preamble}
+
+\title{
+	\huge\sffamily\color{DarkBlue}
+	Primera Práctica Dirigida\quad Grupo N$^{\circ}$1
+}
+
+\subtitle{
+	\large\scshape\color{DarkBlue}
+	Análisis y Modelamiento Numérico I\quad CM4F1 A\\[.5\baselineskip]
+	\normalsize\normalfont
+	Profesor(a) \texttt{<nombre del profesor(a)>}
+}
+
+\author{
+	\texttt{<estudiante 1>}\qquad\and\qquad
+	\texttt{<estudiante 2>}\qquad\and\qquad
+	\texttt{<estudiante 3>}\\[\baselineskip]
+	\texttt{<estudiante 4>}\qquad\and\qquad
+	\texttt{<estudiante 5>}\qquad\and\qquad
+	\texttt{<estudiante 6>}\\[\baselineskip]
+}
+
+\institute{\large
+	Facultad de Ciencias \and
+	Universidad Nacional de Ingeniería
+}
+
+\date{\today} % 20 de marzo del 2024
+
+\titlegraphic{
+	\begin{picture}(0,0)
+		\put(-130,80){\makebox(0,0)[rt]{\href{https://www.overleaf.com/read/<token>}{\includegraphics[width=2.5cm]{logooverleaf}}}}
+		\put(200,80){\makebox(0,0)[rt]{\includegraphics[width=2.5cm]{logouni}}}
+	\end{picture}
+}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+	\frametitle{
+		\color{DarkBlue}
+		Lista de N$^{\circ}$ de pregunta / estudiante
+	}
+	\tableofcontents
+\end{frame}
+
+\input{questions/p5}
+\input{questions/p6}
+\input{references}
+
+\end{document}
+
+% TODO: algoritm, table.
